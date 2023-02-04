@@ -8,6 +8,18 @@ class Bezier(VFF):
         self.shape_out = shape_out
         self.control_points = control_points
 
+    @classmethod
+    def make_closed(self, _spine: array, _loop: array, _control_points: array):
+        pass
+
+    @classmethod
+    def make_random(self):
+        pass
+
+    @classmethod
+    def make_random_closed(self):
+        pass
+
     def __call__(self, t):
         return self.evaluate(t)
 
@@ -19,6 +31,10 @@ class Bezier(VFF):
                 self.control_points,
                 self.shape_out.reshape(self.control_points.shape[0],1)
             ]
+        ## map lambda _: cn over the temp control axis so that below can be a functional
+        ## ie return a nested lambda function of t. When moving to multi-dimensional forms
+        ## then it'll be lambda t1: lambda t2: ... lambda tn: ?? . Think about this! There's
+        ## could be some really interesting shapes here.
         temp_control = concatenate(a, axis=1)
         while temp_control.shape[1] > 1:
             A = [
@@ -29,6 +45,7 @@ class Bezier(VFF):
             temp_control = stack(A, axis = 1)
         return tuple(temp_control.T.reshape(self.control_points.shape[0]))
 
+    ## there may be a problem with this over many splits.
     def split(self, t):
         return [ Bezier(
             self.shape_in, self.shape_out, self.control_points, callparam=lambda nt: t*nt)
