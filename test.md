@@ -35,7 +35,7 @@ pub mod bezier {
 
 ```
 
-```py3
+```python
 from src.typeclass.VFF import VFF
 
 from numpy import array, concatenate, stack
