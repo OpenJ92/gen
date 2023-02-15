@@ -45,6 +45,9 @@ class Bezier(VFF):
             temp_control = stack(A, axis = 1)
         return tuple(temp_control.T.reshape(self.control_points.shape[0]))
 
+    def _evaluate(self, t, arr):
+        pass
+
     ## there may be a problem with this over many splits.
     def split(self, t):
         return [ Bezier(

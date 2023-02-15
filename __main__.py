@@ -19,7 +19,7 @@ from src.VFF.vectorDeformationMany import vectorDeformationMany
 from src.VFF.split import Split
 from src.VFF.partitionVFFCircle import partitionVFFCircle
 
-from src.typeclass.canvas import Canvas, A0, A1, A2, A3, A4
+from src.typeclass.canvas import Canvas, A0, A1, A2, A3, A4, profilePhoto, squareImage, images, story
 
 from src.sample_method.linspace import Linspace
 from src.sample_method.beta import Beta
@@ -33,6 +33,7 @@ from canvas.gridDeformationPerlinNoise import gridDeformationPerlinNoise
 from canvas.partitionManyCirclesRotate import partitionManyCirclesRotate
 from canvas.deformCirclesR3 import deformCirclesR3
 from canvas.partitionManyLine import partitionManyLine
+from canvas.circleInversion import circleInversion
 
 from functools import partial
 import numpy as np
@@ -52,20 +53,22 @@ def composition():
     nf = partitionManyLine.construct_random(a,d)
     g = partitionManyCirclesRotate.construct_random(b,e)
     h = lambda m: gridDeformationPerlinNoise(m, 10, 10, 5, 20)
+    ql = grid(0,0,280,280).horizontal()
     q = grid(0,0,140,140)
-    ql = grid(0,0,140,140)
 
-    store[f"{a}_{b}"] = [nf(g(f(ql))), nf(f(g(q)))]
-    nf(g(f(ql))).write_to_file("")
-    nf(f(g(q))).write_to_file("")
-    return store
+    l = nf(f(ql))
 
-def deform():
-    a, b, c = [randrange(1, 1000000) for _ in range(3)]
-    d, e, f = [randrange(1, 4) for _ in range(3)]
-    steps = randrange(2,13)
-    print(a, b, c, d, e, f, steps)
-    deformCirclesR3(a, b, c, d, e, f, steps).write_to_file("")
+    construct = circleInversion(circleInversion(circleInversion(l, [100,500,500]), [600,600,1000]), [0,400,300])
+
+    construct.write_to_file("")
+
+    return construct
+
+def deform(m = grid(100, 100, 550, 350, Linspace(150), Linspace(150)).vertical()):
+    steps, seednum = randrange(9,13), randrange(10000000)
+    l = deformCirclesR3.construct_random(m, seednum, steps)
+    l.write_to_file("")
+    return l
 
 ## Consider making a function that runs random Canvas with arguments. Run daily. Look to write
 ## fit to canvas wrapper canvas. Perhaps we should look into databasing each canvas.
