@@ -13,7 +13,6 @@ class Bezier(VFF):
         m, *ms = self.collapse_axes
 
         scp = array_split(self.control_points, self.control_points.shape[m], m)
-        breakpoint()
 
         while len(scp) > 1:
             temp_scp = []
@@ -23,7 +22,6 @@ class Bezier(VFF):
 
         retv, *_ = scp
         retv = squeeze(retv, axis=m)
-        breakpoint()
         if ms:
             ms = list(map(lambda x: x if x < m else x - 1, ms))
             retv = Bezier(retv, ms, self.callparam)(ts)

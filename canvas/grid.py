@@ -31,13 +31,13 @@ class grid(Canvas, Many):
         self.horizontalSample = horizontalSample
 
     def vertical(self):
-        horizontalTop = Line(self.xmin, self.ymin, self.xmax, self.ymin, stroke_width=".2")
-        horizontalBot = Line(self.xmin, self.ymax, self.xmax, self.ymax, stroke_width=".2")
+        horizontalTop = Line(self.xmin, self.ymin, self.xmax, self.ymin)
+        horizontalBot = Line(self.xmin, self.ymax, self.xmax, self.ymax)
         return deformTo(horizontalTop, horizontalBot, self.horizontalSample, self.horizontalSample)
 
     def horizontal(self):
-        verticalTop   = Line(self.xmin, self.ymin, self.xmin, self.ymax, stroke_width=".2")
-        verticalBot   = Line(self.xmax, self.ymin, self.xmax, self.ymax, stroke_width=".2")
+        verticalTop   = Line(self.xmin, self.ymin, self.xmin, self.ymax)
+        verticalBot   = Line(self.xmax, self.ymin, self.xmax, self.ymax)
         return deformTo(verticalTop, verticalBot, self.verticalSample, self.verticalSample)
 
     def drawable(self):
