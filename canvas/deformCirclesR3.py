@@ -54,7 +54,6 @@ class deformCirclesR3(c30x30, Many):
 
         g = lambda x: Line(*x
                            , *Circle(*x, lambda _: noiseRadius(*x))(noiseAngle1(*x))
-                           , stroke="rosybrown"
                            , stroke_width=".15")
 
         h = lambda x: Line(*x[0](1), *x[1](1)
@@ -63,7 +62,7 @@ class deformCirclesR3(c30x30, Many):
         circles  = list(map(f, deformMap))
         circles1 = list(map(g, deformMap))
         connect  = list(map(h, zip(circles, circles1)))
-        return [*circles, *connect, *circles1]
+        return [*connect] #, *connect, *circles1]
 
     def drawable(self):
         return self.many()

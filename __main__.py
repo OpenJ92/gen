@@ -7,6 +7,9 @@ from src.drawables.map import Map
 from src.drawables.deformto import deformTo
 
 from src.VFF.bezier import Bezier
+from src.VFF.plane import Plane
+from src.VFF.blade import Blade
+from src.VFF.__Bezier__ import Bezier as B2
 from src.VFF.linend import LineND
 from src.VFF.concat import Concat
 from src.VFF.add import Add
@@ -38,9 +41,9 @@ from canvas.circleInversion import circleInversion
 from functools import partial
 import numpy as np
 from math import cos, sin, pi
-import cv2
-from svglib.svglib import svg2rlg
-from reportlab.graphics import renderPM
+## import cv2
+## from svglib.svglib import svg2rlg
+## from reportlab.graphics import renderPM
 import os
 from random import seed, randrange, choice
 from os.path import isfile, join
@@ -64,7 +67,7 @@ def composition():
 
     return construct
 
-def deform(m = grid(100, 100, 550, 350, Linspace(150), Linspace(150)).vertical()):
+def deform(m = grid(1, 1, 750, 500, Linspace(500), Linspace(500)).vertical()):
     steps, seednum = randrange(9,13), randrange(10000000)
     l = deformCirclesR3.construct_random(m, seednum, steps)
     l.write_to_file("")
