@@ -7,6 +7,7 @@ class Blade(VFF):
     @classmethod
     def unit(cls, n):
         return cls(array_split(identity(n), n))
+
     def __init__(self, vs):
         self.vs = vs
 

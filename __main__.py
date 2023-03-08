@@ -7,6 +7,7 @@ from src.drawables.map import Map
 from src.drawables.deformto import deformTo
 
 from src.VFF.bezier import Bezier
+from src.VFF.sphere import Sphere
 from src.VFF.plane import Plane
 from src.VFF.blade import Blade
 from src.VFF.__Bezier__ import Bezier as B2
