@@ -25,6 +25,7 @@ class PolyLine(Drawable, Many, VFF):
         return [Line(*i, *j) for i, j in zip(self.points, self.points[1:])]
 
     def __call__(self, t):
+        t, *_ = t
         t = self.callparam(t)
         spines = self.many(); lenspines = len(spines)
         prime = t * lenspines

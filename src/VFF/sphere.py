@@ -5,9 +5,6 @@ from math import sin, cos
 from numpy import hstack, array
 
 class Sphere(VFF):
-    def __init__(self):
-        pass
-
     def __call__(self, ts):
         cach = { t : { sin: sin(t), cos: cos(t) } for t in ts }
         return self.recursive_call(cach, array([1]), ts)

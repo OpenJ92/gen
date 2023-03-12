@@ -15,6 +15,7 @@ class Line(Drawable, VFF):
         return f"<line x1=\"{self.x1}\" x2=\"{self.x2}\" y1=\"{self.y1}\" y2=\"{self.y2}\" fill=\"none\" stroke=\"{self.stroke}\" stroke-width=\"{self.stroke_width}\" />"
 
     def __call__(self, t):
+        t, *_ = t
         dx = self.x2 - self.x1
         dy = self.y2 - self.y1
         return ( self.x1 + self.callparam(t) * dx

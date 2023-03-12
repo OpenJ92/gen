@@ -9,7 +9,7 @@ class Rotate(VFF):
         self.callparam = callparam
 
     def __call__(self, t):
-        (x, y) = self.vff(self.callparam(t))
+        x, y = self.vff(self.callparam(t))
         return ( cos(self.angle)*x - sin(self.angle)*y
                , sin(self.angle)*x + cos(self.angle)*y
                )

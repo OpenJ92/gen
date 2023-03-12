@@ -27,7 +27,7 @@ class deformTo(Many, Canvas):
     def spines(self):
         svff1 = self.vff1.sampl(self.samplVFF)
         svff2 = self.vff2.sampl(self.samplVFF)
-        return [Projection(LineND(i, j), self.projective_plane) for i, j in zip(svff1, svff2)]
+        return [Line(*i, *j) for i, j in zip(svff1, svff2)]
 
     def many(self):
         spines = map(lambda x: x.sampl(self.samplPoly), self.spines())
