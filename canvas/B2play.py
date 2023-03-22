@@ -23,7 +23,6 @@ class B2Play(Canvas):
         data = [randrange(10, 50) for _ in range(2)]
         return cls(data)
 
-
     def drawable(self):
         i, j = self.data
 
